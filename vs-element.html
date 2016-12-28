@@ -1,0 +1,106 @@
+<link rel="import" href="./bower_components/polymer/polymer-element.html">
+<!--<link rel="import" href="./bower_components/base-style/base-style.html">-->
+
+<!--
+`<vs-element>` is a great component.
+
+Example: 
+
+  <vs-element></vs-element>
+
+### Accessibility
+
+### Styling
+
+The following custom properties and mixins are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--test-variable` | variable for the element | `--fab-color`
+`--test-mixin` | Mixin applied to the element | `{}`
+`--test-container-mixin` | Mixin applied to the element local dom | `{}`
+
+@group VS Elements
+@element vs-element
+@demo demo/index.html Demo snippets, demo page is rendered as iframe
+-->
+
+<dom-module id="vs-element">
+  <template strip-whitespace>
+    <style>
+      /* CSS rules for your element */
+      /* 
+        Polymer 2.0 CSS custom property shim performes one-time transformation on stylesheets containing CSS custom property mixins
+        Where possible, mixins are transformed into individual native CSS properties for better performance.
+       */
+       /* 
+        Read more about the limitations of shady CSS polyfill: https://github.com/webcomponents/shadycss#custom-properties-and-apply 
+        */
+
+      :host {
+          /* Apply Customizable variable on element with default custom property value */
+          background: var(--my-theme-color, black);
+          /* Apply Customizable Mixin on element */
+          @apply --test-mixin;
+      }
+
+      :host ::slotted(*) {
+        /* slot selector for all top-level distributed child */
+        /* Style is applied on READY life cycle*/
+        display: block;
+        margin: 20px;
+      }
+
+      :host ::slotted(.test-style) {
+        color: #e62739;
+        /* slot selector for top level distributed child with class 'test-style' */
+        /* In ShadowDOM v1, you cannot select a descendant of a top-level distributed child */
+      }
+
+      .test-container {
+          /* Apply Customizable Mixin on local DOM */
+          background: #edd9c0;
+          color: #3b3a36;
+          text-align: center;
+          @apply --test-container-mixin;
+      }
+    </style>
+
+    <!--// lazyRegister option has been removed
+    // all meta-programming (parsing the template, creating accessors on the prototype, and so on) is deferred until the first instance of the element is created.-->
+
+    <!-- Add your template here: Shadow DOM -->
+    <!--Example: -->
+    
+      <!--<div class="test-container">
+
+      </div>
+    -->
+    
+    <!-- Light Dom slot: ShadowDOM v1 spec -->
+    <!-- Usage: <span class="slot-1-style" slot="slot-1">Slot 1 content</span>-->
+    <div class="test-container">
+      "Shadow: div class test-container"
+      <slot name="slot-1"></slot>
+    </div>
+    
+    <!-- Local Dom slot: ShadowDOM v1 spec -->
+    <!-- Usage: Matches content with no slot attribute-->
+    <slot></slot>
+
+    <!-- Multi-Level distribution -->
+    <!-- Usage: <span slot="slot-1">Slot 1 content</span>-->
+    <!-- Slot-child-el-1 is targeting content from child-el's Shadow DOM-->
+    <!--Example: -->
+    <!--
+      <child-el>
+        <p slot="slot-child-el-1" name="slot-1"></p>
+      </child-el>
+    -->
+    <!--links-->
+    <slot name="slot-2"></slot>
+
+  </template>
+
+  <script src="vs-element.js"></script>
+</dom-module>

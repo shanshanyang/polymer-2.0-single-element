@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+
+  <title>vs-element</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="./bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <!--<link rel="import" href="./bower_components/iron-component-page/iron-component-page.html">-->
+
+  <link rel="import" href="./vs-element.html">
+</head>
+<body>
+  <!-- Style the demo page -->
+  <!--<style>
+    html {
+        --my-theme-color: #e3e0cf;
+      }
+  </style>-->
+  <custom-style>
+    <!--style is="custom-style" will be deprecated in Polymer 2.0 only project,replace it with <style>-->
+    <style is="custom-style">
+      
+      vs-element {
+        --my-theme-color: #9fa8a3;
+        --test-mixin: {
+          width: 100vw;
+          height: 100vh;
+          display: block;
+        };
+        --test-container-mixin: {
+          width: 50vw;
+          height: 50vh;
+          display: block;
+          border: 5px solid pink;
+        };
+      }
+      /* Main document style. :host > * comes earlier in the cascade order, applies 
+    a ruleset to all the top-level children in the host's shadow tree.  */
+      :host > * {
+        --my-theme-color: #c5d5cb;
+      }
+      
+      /*Customize hamburger icon size with iron-icon style API*/
+      /* .big style overwrites :host rule in iron-icon's shadow root */
+      .big {
+        --iron-icon-width: 32px;
+        --iron-icon-height: 32px;
+      }
+    </style>
+  </custom-style>
+
+  <vs-element foo bar>
+    "LocalDOM: h1, h3"
+    <h1 slot="slot-1">
+      VS LocalDOM: should be #9ad3de from vs-element.scss h1 selector
+    </h1>
+    <!--Links-->
+    <a href="https://www.victoriassecret.com/fashion-show/runway-insider?testUnlockTo=2" slot="slot-2">
+      <img src="https://dm.victoriassecret.com/imagefeatures/0x0/1267932202053/bg-img-2.jpg" 
+        alt="runway insider fashionshow" title="runway insider fashionshow"
+        width="300"></img>
+    </a>
+    <h3 class="test-style">
+      h3 TEST STYLE LocalDOM: should be #e62739 from vs-element custom style
+    </h3>
+    <div>
+      <p class="test-style"> P test style LocalDOM: should not be #e62739 from slot selector in vs-element</p>
+    </div>
+    
+  </vs-element>
+</body>
+</html>

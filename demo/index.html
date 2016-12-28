@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>vs-element Demo</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <!-- Load webcompoenents lite for cross browser-->
+  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <!-- Load dependecy demo helper components -->
+  <link rel="import" href="../bower_components/iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="../bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
+  <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+  <link rel="import" href="demo-icons.html">
+
+  <!-- Load dependecy components-->
+  
+  <!-- Load current demo component -->
+  <link rel="import" href="../vs-element.html">
+
+  <!-- Style the demo page -->
+  <custom-style>
+    <!--style is="custom-style" will be deprecated in Polymer 2.0 only project,replace it with <style>-->
+    <style is="custom-style" include="demo-pages-shared-styles">
+      html {
+        --my-theme-color: #9C27B0;
+      }
+      /* Main document style. :host > * comes earlier in the cascade order, applies 
+    a ruleset to all the top-level children in the host's shadow tree.  */
+      :host > * {
+        --my-theme-color: red;
+      }
+        
+      .vertical-section-container {
+          max-width: 500px;
+      }
+      
+      /*Customize hamburger icon size with iron-icon style API*/
+      /* .big style overwrites :host rule in iron-icon's shadow root */
+      .big {
+        --iron-icon-width: 32px;
+        --iron-icon-height: 32px;
+      }
+    </style>
+  </custom-style>
+</head>
+<body unresolved>
+  <div class="vertical-section-container centered">
+    <h3>Description of Demo 1</h3>
+    <demo-snippet class="centered-demo">
+      <template>
+        <vs-element>
+            <h1 class="test-style">Test style applied with :host ::slotted(.test-style), should display in pink color</h1>
+            <iron-icon icon="demo:hamburger" class="big"></iron-icon>
+            <div>
+              <p class="test-style">Test style is NOT applied with :host ::slotted(.test-style), should not display in pink color</p>
+            </div>
+        </vs-element>
+      </template>
+    </demo-snippet>
+  </div>
+</body>
+</html>
